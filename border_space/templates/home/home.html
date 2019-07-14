@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Border Space</title>
+</head>
+<body onload="webGLstart()">
+<canvas id="webgl" width="500" height="500">
+    <!-- cosas-->
+</canvas>
+<br>
+<button onclick="createStickman()">Create Stickman</button>
+<button onclick="moveLeft()">Move Left</button>
+<button onclick="moveRight()">Move Right</button>
+</body>
+</html>
+<script>
+    var gl;
+    var stickman = null;
+
+    function initWebGL(canvas) {
+      gl = null;
+
+      try {
+        // Tratar de tomar el contexto estandar. Si falla, retornar al experimental.
+        gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      }
+      catch(e) {}
+
+      // Si no tenemos ningun contexto GL, date por vencido ahora
+      if (!gl) {
+        alert("Imposible inicializar WebGL. Tu navegador puede no soportarlo.");
+        gl = null;
+      }
+
+      return gl;
+    }
+
+    function webGLstart() {
+        console.log("function initiated")
+        var canvas = document.getElementById("webgl");
+
+        gl = initWebGL(canvas);      // Inicializar el contexto GL
+
+        if (gl) {
+          gl.clearColor(0.0, 0.0, 1.0, 1.0);                      
+          gl.enable(gl.DEPTH_TEST);                               // Habilitar prueba de profundidad
+          gl.depthFunc(gl.LEQUAL);                                // Objetos cercanos opacan objetos lejanos
+          gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Limpiar el buffer de color asi como el de profundidad
+        }
+    }
+
+    function createStickman() {
+      console.log("Create Stickman");
+      stickman = 0;
+    }
+
+    function moveLeft() {
+      console.log("Move Left");
+    }
+
+    function moveRight() {
+      console.log("Move Right");
+    }
+</script>
