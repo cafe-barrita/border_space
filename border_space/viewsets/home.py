@@ -2,7 +2,7 @@ from django.template import Template, RequestContext
 from django.http import HttpResponse
 
 def home(request):
-    fp = open('border_space/templates/home/home.html')
+    fp = open('border_space/frontend/templates/home.html')
     html = Template(fp.read())
     fp.close()
     context = RequestContext(request)

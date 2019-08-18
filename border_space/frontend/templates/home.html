@@ -3,7 +3,7 @@
     <title>Border Space</title>
 </head>
 <body onload="webGLstart()">
-<canvas id="webgl" width="500" height="500">
+<canvas id="webgl" width="1000" height="600">
     <!-- cosas-->
 </canvas>
 <br>
@@ -12,6 +12,7 @@
 <button onclick="moveRight()">Move Right</button>
 </body>
 </html>
+<script src="./PhiloGL.js"></script>
 <script>
     var gl;
     var stickman = null;
@@ -41,11 +42,18 @@
         gl = initWebGL(canvas);      // Inicializar el contexto GL
 
         if (gl) {
-          gl.clearColor(0.0, 0.0, 1.0, 1.0);                      
+          gl.clearColor(0.0, 0.0, 1.0, 1.0);
           gl.enable(gl.DEPTH_TEST);                               // Habilitar prueba de profundidad
           gl.depthFunc(gl.LEQUAL);                                // Objetos cercanos opacan objetos lejanos
           gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Limpiar el buffer de color asi como el de profundidad
         }
+
+        var moon = new PhiloGL.O3D.Sphere({
+            nlat: 30,
+            nlong: 30,
+            radius: 2,
+            textures: 'moon.gif'
+        });
     }
 
     function createStickman() {
